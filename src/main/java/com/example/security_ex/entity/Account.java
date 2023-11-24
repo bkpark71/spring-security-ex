@@ -38,7 +38,7 @@ public class Account {
      * @param passwordEncoder
      * @return true | false
      */
-    public boolean checkPasswprd(String password, PasswordEncoder passwordEncoder){
+    public boolean checkPassword(String password, PasswordEncoder passwordEncoder){
         return passwordEncoder.matches(password, this.password);
     }
 }

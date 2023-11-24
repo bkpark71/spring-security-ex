@@ -34,15 +34,15 @@ public class AccountService implements UserDetailsService {
     }
 
     public boolean checkAccount(Account account){
-        if(account.checkPasswprd(account.getPassword(), passwordEncoder)){
+        if(account.checkPassword(account.getPassword(), passwordEncoder)){
             return true;
         }
         return false;
     }
     public Account addAccount(Account account) {
         validateDuplicateAccount(account);
-        Account hashedaccount = account.hashPassword(passwordEncoder);
-        return accountRepository.save(hashedaccount);
+        Account hashedAccount = account.hashPassword(passwordEncoder);
+        return accountRepository.save(hashedAccount);
     }
 
     private void validateDuplicateAccount(Account account) {
