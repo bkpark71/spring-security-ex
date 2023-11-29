@@ -23,7 +23,6 @@ public class AccountController {
 
     @PostMapping("/account/new")
     public String newAccount(@ModelAttribute Account account){
-
         accountService.addAccount(account);
         return "redirect:/login";
     }

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <p>담당자<input type="text" name="manager"></p>
+
+    <table>
+        <thead>
+            <tr></tr>
+            <th>제품ID</th>
+            <th>제품명</th>
+            <th>가격</th>
+            <th>수량</th>
+            <th>담당자</th>
+        </thead>
+        <tbody>
+            <tr th:each="product : ${products}">
+                <td th:text="${product.productId}"></td>
+                <td th:text="${product.name}"></td>
+                <td th:text="${product.price}"></td>
+                <td th:text="${product.quantity}"></td>
+                <td th:text="${product.manager.username}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

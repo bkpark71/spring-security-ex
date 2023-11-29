@@ -26,15 +26,20 @@ public class SecurityConfig {
      */
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-       http
+        //http.csrf(csrf -> csrf.disable());
+        http
                 .authorizeRequests()
-                .requestMatchers("/account/new", "/login").permitAll()
+                .requestMatchers("/account/new", "/login" , "/").permitAll()
+                .requestMatchers("/admin", "/products/new").hasRole("ADMIN")
+                //.requestMatchers("/user", "/products/list", "/products/info").hasAnyRole("USER", "ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin(login -> login.loginPage("/login")
                                         .usernameParameter("username")
                                         .passwordParameter("password")
-                                        .defaultSuccessUrl("/"));
+                                        .defaultSuccessUrl("/"))
+                .exceptionHandling(exception -> exception.accessDeniedPage("/access-denied")); // 403 오류 화면 커스터마이징
+
         return http.build();
     }
 }

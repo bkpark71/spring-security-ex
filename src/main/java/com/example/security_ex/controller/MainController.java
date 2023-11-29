@@ -33,4 +33,14 @@ public class MainController {
         }
         return "admin";
     }
+
+    @GetMapping("/access-denied")
+    public String accessDenied(Model model, Principal principal){
+        if(principal == null) {
+            model.addAttribute("user", "guest");
+        } else {
+            model.addAttribute("user", principal.getName());
+        }
+        return "access-denied";
+    }
 }
